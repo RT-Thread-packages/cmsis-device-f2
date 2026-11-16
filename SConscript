@@ -9,7 +9,7 @@ cwd = GetCurrentDir()
 
 # Initialize include paths and source files list
 path = [os.path.join(cwd, 'Include')]
-src = [os.path.join(cwd, 'Source', 'Templates', 'system_stm32f2xx.c')]
+src = [os.path.join('Source', 'Templates', 'system_stm32f2xx.c')]
 
 # Map microcontroller units (MCUs) to their corresponding startup files
 mcu_startup_files = {
@@ -24,11 +24,11 @@ mcu_startup_files = {
 for mcu, startup_file in mcu_startup_files.items():
     if mcu in env.get('CPPDEFINES', []):
         if rtconfig.PLATFORM in ['gcc', 'llvm-arm']:
-            src += [os.path.join(cwd, 'Source', 'Templates', 'gcc', startup_file)]
+            src += [os.path.join('Source', 'Templates', 'gcc', startup_file)]
         elif rtconfig.PLATFORM in ['armcc', 'armclang']:
-            src += [os.path.join(cwd, 'Source', 'Templates', 'arm', startup_file)]
+            src += [os.path.join('Source', 'Templates', 'arm', startup_file)]
         elif rtconfig.PLATFORM in ['iccarm']:
-            src += [os.path.join(cwd, 'Source', 'Templates', 'iar', startup_file)]
+            src += [os.path.join('Source', 'Templates', 'iar', startup_file)]
         break
 
 # Define the build group
